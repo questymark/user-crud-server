@@ -1,0 +1,10 @@
+dist
+node_modules
+.idea/dbnavigator.xml
+.idea/jsLibraryMappings.xml
+.idea/markdown-navigator.xml
+.idea/markdown-navigator/
+.idea/misc.xml
+.idea/modules.xml
+.idea/user-crud-server.iml
+.idea/workspace.xml
