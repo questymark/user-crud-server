@@ -16,6 +16,14 @@ app.get('/users', (req, res) => {
   db.listUsers(req.query).then(data => res.send(data));
 });
 
+app.get('/users/:id', (req, res) => {
+  db.getUser(req.params.id).then(data => res.send(data));
+});
+
+app.put('/users/:id', (req, res) => {
+  db.updateUser(req.params.id, req.body).then(data => res.send(data));
+});
+
 app.post('/users', (req, res) => {
   db.createUser(req.body).then(data => res.send(data));
 });

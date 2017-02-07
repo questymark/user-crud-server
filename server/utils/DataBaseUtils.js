@@ -11,11 +11,26 @@ export function setupConnection() {
 export function listUsers(query) {
     let filters = {};
     for (let filter in query.filter) {
-        filters[filter] = new RegExp(`${query.filter[filter]}`, "i") ;
+        filters[filter] = new RegExp(`${query.filter[filter]}`, "i");
     }
-    console.log(filters);
-    return User.find()
-        .sort({[query.sort] : query.sort[0] !== '-' ? 1 : -1})
+
+    return User.find(filters)
+        .sort(query.sort ?
+                query.sort[0] !== '-' ?
+                    {[query.sort] : 1}
+                        :
+                    {[query.sort.slice(1)] : -1}
+                :
+                {})
+
+}
+
+export function getUser(_id) {
+    return User.findOne({_id});
+}
+
+export function updateUser(_id, body) {
+    return User.update({_id}, {$set: body});
 }
 
 export function createUser(data) {
